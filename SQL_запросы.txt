@@ -1,0 +1,17 @@
+Нам потребуется использовать оператор LEFT JOIN. 
+Он позволяет объединить таблицы таким образом, что если у продукта нет категорий, его имя все равно будет выводиться. 
+Предположим, что у нас есть две таблицы: Products и Categories, а также таблица связей между ними ProductCategories. 
+
+
+Вот пример SQL-запроса:
+
+SELECT P.ProductName, C.CategoryName
+FROM Products AS P
+LEFT JOIN ProductCategories AS PC ON P.ProductID = PC.ProductID
+LEFT JOIN Categories AS C ON PC.CategoryID = C.CategoryID
+ORDER BY P.ProductName, C.CategoryName;
+
+Здесь мы используем LEFT JOIN для объединения таблиц Products и ProductCategories по столбцу ProductID, 
+а затем еще один LEFT JOIN для объединения таблиц ProductCategories и Categories по столбцу CategoryID. 
+В результате получаем все пары "Имя продукта – Имя категории". 
+Если у продукта нет категорий, его имя будет выводиться с NULL в столбце CategoryName.
